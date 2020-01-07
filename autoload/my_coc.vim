@@ -1,4 +1,5 @@
 function! my_coc#Setup() abort
+  setlocal encoding=utf-8
   setlocal hidden
   setlocal nobackup
   setlocal nowritebackup
@@ -18,12 +19,6 @@ function! my_coc#Setup() abort
     return !col || getline('.')[col - 1]  =~# '\s'
   endfunction
 
-  " if exists('*complete_info')
-  "   inoremap <buffer> <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-  " else
-  "   inoremap <buffer> <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-  " endif
-
   nmap <buffer> <silent> [g <Plug>(coc-diagnostic-prev)
   nmap <buffer> <silent> ]g <Plug>(coc-diagnostic-next)
 
@@ -34,17 +29,26 @@ function! my_coc#Setup() abort
 
   nnoremap <buffer> <silent> K :call <SID>coc_show_documentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
+  function! s:coc_show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    elseif (coc#rpc#ready())
+      call CocActionAsync('doHover')
+    else
+      execute '!' . &keywordprg . " " . expand('<cword>')
+    endif
+  endfunction
 
   nmap <buffer> <localleader>n <Plug>(coc-rename)
   xmap <buffer> <localleader>a <Plug>(coc-codeaction-selected)
   nmap <buffer> <localleader>a <Plug>(coc-codeaction-selected)
+
+  xmap <buffer> if <Plug>(coc-funcobj-i)
+  omap <buffer> if <Plug>(coc-funcobj-i)
+  xmap <buffer> af <Plug>(coc-funcobj-a)
+  omap <buffer> af <Plug>(coc-funcobj-a)
+  xmap <buffer> ic <Plug>(coc-classobj-i)
+  omap <buffer> ic <Plug>(coc-classobj-i)
+  xmap <buffer> ac <Plug>(coc-classobj-a)
+  omap <buffer> ac <Plug>(coc-classobj-a)
 endfunction

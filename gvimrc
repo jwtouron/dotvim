@@ -1,6 +1,6 @@
 " set guifont=Roboto\ Mono\ 10
 if has('win32') || has('win64')
-  set guifont=Cascadia_Mono_PL:h10:cANSI:qDRAFT
+  set guifont=Cascadia_Mono_PL:h11:cANSI:qDRAFT
 else
   set guifont=Cascadia\ Mono\ PL\ 11
 endif
@@ -16,7 +16,7 @@ set guioptions-=r
 
 set guicursor+=a:blinkon0
 
-set background=dark
+" set background=dark
 
 augroup MyColors
   autocmd!

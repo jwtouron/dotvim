@@ -1,9 +1,10 @@
 " Plugins
 
-call plug#begin('~/.vim/plugged')
+call plug#begin($HOME . '/.vim/plugged')
 Plug 'airblade/vim-rooter'
 Plug 'andrewradev/bufferize.vim'
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'embear/vim-localvimrc'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -17,6 +18,7 @@ Plug 'romainl/vim-qlist'
 Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rsi'
@@ -28,7 +30,7 @@ Plug 'tyru/open-browser.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'wellle/targets.vim'
 " LSP
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " It happens on some versions of neovim, use <C-w>o to close other windows or use :call coc#util#float_hide()
+Plug 'neoclide/coc.nvim', {'branch': 'release'}  " It happens on some versions of neovim, use <C-w>o to close other windows or use :call coc#util#float_hide()
 " Colorschemes
 Plug 'atelierbram/vim-colors_atelier-schemes'
 Plug 'ayu-theme/ayu-vim'
@@ -93,15 +95,20 @@ let g:gutentags_ctags_tagfile = '.vimtags'
 
 " haskell
 
-" let g:haskell_indent_disable = 1
-let g:haskell_enable_pattern_synonyms = 1
-let g:haskell_enable_quantification = 1
+" let hs_highlight_delimiters = 1
+" let hs_highlight_boolean = 1
+" let hs_highlight_types = 1
+" let hs_highlight_more_types = 1
+let g:haskell_classic_highlighting = 1
+" let g:haskell_enable_pattern_synonyms = 1
+" let g:haskell_enable_quantification = 1
 let g:haskell_indent_if = 0
 let g:haskell_indent_in = 0
 
 " rooter
 
 let g:rooter_change_directory_for_non_project_files = 'current'
+let g:rooter_patterns = ['.projections.json']
 
 " vimwiki
 
@@ -119,7 +126,6 @@ set autowrite
 set cmdheight=2
 set complete-=t
 set completeopt=menu,menuone,noselect,preview
-set cursorline
 set expandtab
 set formatoptions-=cro
 set gdefault
@@ -134,9 +140,9 @@ set relativenumber
 set shiftround
 set showcmd
 set smartcase
-set synmaxcol=200
+" set synmaxcol=200
 set virtualedit=block
-set wildmode=list:longest,full
+set wildmode=longest,list,full
 
 set noshowmode
 set noswapfile
@@ -148,6 +154,8 @@ endif
 
 augroup MY_AUTOCMDS
   autocmd!
+  autocmd QuickFixCmdPost [^l]* nested cwindow
+  autocmd QuickFixCmdPost    l* nested lwindow
   " autocmd InsertLeave,WinEnter * set cursorline
   " autocmd InsertEnter,WinLeave * set nocursorline
 augroup END
@@ -159,3 +167,7 @@ else
 endif
 
 command! BW :b#|bw#
+
+if has('gui_running')
+  set cursorline
+endif
