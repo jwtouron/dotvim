@@ -1,4 +1,5 @@
 function! my_coc#Setup() abort
+  setlocal encoding=utf-8
   setlocal hidden
   setlocal nobackup
   setlocal nowritebackup
@@ -17,12 +18,6 @@ function! my_coc#Setup() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
   endfunction
-
-  " if exists('*complete_info')
-  "   inoremap <buffer> <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-  " else
-  "   inoremap <buffer> <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-  " endif
 
   nmap <buffer> <silent> [g <Plug>(coc-diagnostic-prev)
   nmap <buffer> <silent> ]g <Plug>(coc-diagnostic-next)
@@ -47,4 +42,13 @@ endfunction
   nmap <buffer> <localleader>n <Plug>(coc-rename)
   xmap <buffer> <localleader>a <Plug>(coc-codeaction-selected)
   nmap <buffer> <localleader>a <Plug>(coc-codeaction-selected)
+
+  xmap <buffer> if <Plug>(coc-funcobj-i)
+  omap <buffer> if <Plug>(coc-funcobj-i)
+  xmap <buffer> af <Plug>(coc-funcobj-a)
+  omap <buffer> af <Plug>(coc-funcobj-a)
+  xmap <buffer> ic <Plug>(coc-classobj-i)
+  omap <buffer> ic <Plug>(coc-classobj-i)
+  xmap <buffer> ac <Plug>(coc-classobj-a)
+  omap <buffer> ac <Plug>(coc-classobj-a)
 endfunction

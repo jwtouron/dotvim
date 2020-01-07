@@ -1,7 +1,6 @@
 {
     "suggest.autoTrigger": "none",
     "suggest.removeDuplicateItems": true,
-    "python.jediEnabled": false,
     "python.linting.mypyEnabled": true,
     "languageserver": {
         "nim": {

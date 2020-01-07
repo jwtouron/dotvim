@@ -2,8 +2,8 @@ let mapleader = "\<space>"
 let maplocalleader = "\\"
 
 nnoremap <expr> gV '`[' . getregtype()[0] . '`]'
-nnoremap <expr> j v:count ? 'j' : 'gj'
-nnoremap <expr> k v:count ? 'k' : 'gk'
+" nnoremap <expr> j v:count ? 'j' : 'gj'
+" nnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap Y y$
 
 nnoremap <expr> n v:searchforward ? 'n' : 'N'

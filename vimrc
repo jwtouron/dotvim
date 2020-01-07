@@ -1,6 +1,6 @@
 " Plugins
 
-call plug#begin('~/.vim/plugged')
+call plug#begin($HOME . '/.vim/plugged')
 Plug 'airblade/vim-rooter'
 Plug 'andrewradev/bufferize.vim'
 Plug 'bronson/vim-trailing-whitespace'
@@ -28,7 +28,7 @@ Plug 'tyru/open-browser.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'wellle/targets.vim'
 " LSP
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " It happens on some versions of neovim, use <C-w>o to close other windows or use :call coc#util#float_hide()
+Plug 'neoclide/coc.nvim', {'branch': 'release'}  " It happens on some versions of neovim, use <C-w>o to close other windows or use :call coc#util#float_hide()
 " Colorschemes
 Plug 'atelierbram/vim-colors_atelier-schemes'
 Plug 'ayu-theme/ayu-vim'
@@ -93,9 +93,13 @@ let g:gutentags_ctags_tagfile = '.vimtags'
 
 " haskell
 
-" let g:haskell_indent_disable = 1
-let g:haskell_enable_pattern_synonyms = 1
-let g:haskell_enable_quantification = 1
+" let hs_highlight_delimiters = 1
+" let hs_highlight_boolean = 1
+" let hs_highlight_types = 1
+" let hs_highlight_more_types = 1
+let g:haskell_classic_highlighting = 1
+" let g:haskell_enable_pattern_synonyms = 1
+" let g:haskell_enable_quantification = 1
 let g:haskell_indent_if = 0
 let g:haskell_indent_in = 0
 
@@ -134,7 +138,7 @@ set relativenumber
 set shiftround
 set showcmd
 set smartcase
-set synmaxcol=200
+" set synmaxcol=200
 set virtualedit=block
 set wildmode=list:longest,full
 
